@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: EcoLogistics API
+  version: "1.0.0"
+servers:
+  - url: http://localhost:8080
+paths:
+  /envios:
+    get:
+      summary: Lista todos los envíos
+      responses:
+        '200':
+          description: Lista de envíos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Envio'
+    post:
+      summary: Crea un nuevo envío
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Envio'
+      responses:
+        '201':
+          description: Envío creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envio'
+        '409':
+          description: ID duplicado
+  /envios/{id}:
+    get:
+      summary: Obtiene un envío por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Envío encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envio'
+        '404':
+          description: Envío no encontrado
+components:
+  schemas:
+    Envio:
+      type: object
+      required: [id, cliente, direccion, estado]
+      properties:
+        id:
+          type: string
+        cliente:
+          type: string
+        direccion:
+          type: string
+        estado:
+          type: string

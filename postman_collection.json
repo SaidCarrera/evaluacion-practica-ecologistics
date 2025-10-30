@@ -1,0 +1,33 @@
+{
+  "info": {
+    "name": "EcoLogistics - Evaluacion Practica",
+    "_postman_id": "00000000-0000-0000-0000-000000000000",
+    "description": "Colección para validar GET /envios, GET /envios/{id}, POST /envios",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:8080" }
+  ],
+  "item": [
+    {
+      "name": "GET /envios",
+      "request": { "method": "GET", "url": "{{baseUrl}}/envios" }
+    },
+    {
+      "name": "GET /envios/{id}",
+      "request": { "method": "GET", "url": "{{baseUrl}}/envios/001" }
+    },
+    {
+      "name": "POST /envios",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"004\",\n  \"cliente\": \"Ana Ruiz\",\n  \"direccion\": \"Pasaje 5 #10\",\n  \"estado\": \"Pendiente\"\n}"
+        },
+        "url": "{{baseUrl}}/envios"
+      }
+    }
+  ]
+}
